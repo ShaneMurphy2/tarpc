@@ -578,9 +578,11 @@ impl<'a> ServiceGenerator<'a> {
             }
 
             #[doc = #stub_doc]
+            #[::tarpc::async_trait::async_trait(?Send)]
             #vis trait #client_stub_ident: ::tarpc::client::stub::Stub<Req = #request_ident, Resp = #response_ident> {
             }
 
+            #[::tarpc::async_trait::async_trait(?Send)]
             impl<S> #client_stub_ident for S
                 where S: ::tarpc::client::stub::Stub<Req = #request_ident, Resp = #response_ident>
             {
@@ -616,6 +618,7 @@ impl<'a> ServiceGenerator<'a> {
         } = self;
 
         quote! {
+            #[::tarpc::async_trait::async_trait(?Send)]
             impl<S> ::tarpc::server::Serve for #server_ident<S>
                 where S: #service_ident
             {

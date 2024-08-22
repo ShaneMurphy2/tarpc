@@ -6,9 +6,10 @@ use crate::{
 };
 use std::sync::Arc;
 
+#[async_trait::async_trait(?Send)]
 impl<Stub, Req, F> stub::Stub for Retry<F, Stub>
 where
-    Req: RequestName,
+    Req: RequestName + 'static,
     Stub: stub::Stub<Req = Arc<Req>>,
     F: Fn(&Result<Stub::Resp, RpcError>, u32) -> bool,
 {

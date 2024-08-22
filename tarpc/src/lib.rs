@@ -220,6 +220,8 @@ pub mod trace;
 #[cfg(feature = "serde1")]
 pub use tarpc_plugins::derive_serde;
 
+pub use async_trait;
+
 /// The main macro that creates RPC services.
 ///
 /// Rpc methods are specified, mirroring trait syntax:

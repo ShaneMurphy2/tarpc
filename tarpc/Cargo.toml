@@ -42,6 +42,7 @@ travis-ci = { repository = "google/tarpc" }
 
 [dependencies]
 anyhow = "1.0"
+async-trait = "0.1.81"
 fnv = "1.0"
 futures = "0.3"
 humantime = "2.0"
@@ -59,7 +60,6 @@ tracing = { version = "0.1", default-features = false, features = [
     "log",
 ] }
 tracing-opentelemetry = { version = "0.22.0", default-features = false }
-trait-variant = "0.1.1"
 opentelemetry = { version = "0.21.0", default-features = false }
 
 

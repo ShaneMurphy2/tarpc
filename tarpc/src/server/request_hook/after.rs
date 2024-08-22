@@ -49,6 +49,7 @@ impl<Serv: Clone, Hook: Clone> Clone for ServeThenHook<Serv, Hook> {
     }
 }
 
+#[async_trait::async_trait(?Send)]
 impl<Serv, Hook> Serve for ServeThenHook<Serv, Hook>
 where
     Serv: Serve,

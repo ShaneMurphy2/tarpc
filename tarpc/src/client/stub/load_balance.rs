@@ -11,6 +11,7 @@ mod round_robin {
     };
     use cycle::AtomicCycle;
 
+    #[async_trait::async_trait(?Send)]
     impl<Stub> stub::Stub for RoundRobin<Stub>
     where
         Stub: stub::Stub,
@@ -108,6 +109,7 @@ mod consistent_hash {
         num::TryFromIntError,
     };
 
+    #[async_trait::async_trait(?Send)]
     impl<Stub, S> stub::Stub for ConsistentHash<Stub, S>
     where
         Stub: stub::Stub,

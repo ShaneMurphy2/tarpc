@@ -37,6 +37,7 @@ impl<Req, Resp, Serv: Clone, Hook: Clone> Clone for HookThenServeThenHook<Req, R
     }
 }
 
+#[async_trait::async_trait(?Send)]
 impl<Req, Resp, Serv, Hook> Serve for HookThenServeThenHook<Req, Resp, Serv, Hook>
 where
     Req: RequestName,

@@ -21,6 +21,7 @@ where
     }
 }
 
+#[async_trait::async_trait(?Send)]
 impl<Req, Resp> Stub for Mock<Req, Resp>
 where
     Req: Eq + Hash + RequestName,

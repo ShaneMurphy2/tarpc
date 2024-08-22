@@ -13,8 +13,7 @@ mod mock;
 
 /// A connection to a remote service.
 /// Calls the service with requests of type `Req` and receives responses of type `Resp`.
-#[allow(async_fn_in_trait)]
-#[trait_variant::make(TokioStub: Send)]
+#[async_trait::async_trait(?Send)]
 pub trait Stub {
     /// The service request type.
     type Req: RequestName;
@@ -27,6 +26,7 @@ pub trait Stub {
         -> Result<Self::Resp, RpcError>;
 }
 
+#[async_trait::async_trait(?Send)]
 impl<Req, Resp> Stub for Channel<Req, Resp>
 where
     Req: RequestName,

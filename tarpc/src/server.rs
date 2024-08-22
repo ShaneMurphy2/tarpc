@@ -68,11 +68,12 @@ impl Config {
     }
 }
 
-/// A [`Stub`] implementation that simply warps a `Serve`.
+/// A [`Stub`] implementation that simply wraps a `Serve`.
 pub struct ServeStub<S> {
     serve: S,
 }
 
+#[async_trait::async_trait(?Send)]
 impl<S> Stub for ServeStub<S>
 where
     S: Serve + Clone,
@@ -90,7 +91,7 @@ where
 }
 
 /// Equivalent to a `FnOnce(Req) -> impl Future<Output = Resp>`.
-#[allow(async_fn_in_trait)]
+#[async_trait::async_trait(?Send)]
 pub trait Serve {
     /// Type of request.
     type Req: RequestName;
@@ -146,6 +147,7 @@ where
     }
 }
 
+#[async_trait::async_trait(?Send)]
 impl<Req, Resp, Fut, F> Serve for ServeFn<Req, Resp, F>
 where
     Req: RequestName,

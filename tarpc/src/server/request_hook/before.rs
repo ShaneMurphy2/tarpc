@@ -77,6 +77,7 @@ impl<Serv, Hook> HookThenServe<Serv, Hook> {
     }
 }
 
+#[async_trait::async_trait(?Send)]
 impl<Serv, Hook> Serve for HookThenServe<Serv, Hook>
 where
     Serv: Serve,
